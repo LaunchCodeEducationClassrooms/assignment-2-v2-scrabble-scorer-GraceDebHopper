@@ -43,8 +43,8 @@ function initialPrompt() {
 
 let simpleScore = {
   name: "Simple Score",
-  description: "Each letter is worth 1 point",
-  scorerFunction: function simpleScorer(word) {
+  description: "Each letter is worth 1 point.",
+  scorerFunction: function simpleScore(word) {
     let simpleScore = 0;
     for(let i=0; i<word.length; i++) {
       simpleScore ++;
@@ -57,8 +57,8 @@ let simpleScore = {
 
 let vowelBonusScore = {
   name: "Bonus Vowels",
-  description: "Vowels are 3 pts, consonaants are 1 pt.",
-  scorerFunction: function vowelBonusScorer(word) {
+  description: "Vowels are 3 pts, consonants are 1 pt.",
+  scorerFunction: function vowelBonusScore(word) {
     word = word.toLowerCase();
     let vowelBonusScorer = 0;
     for(let i=0; i<word.length; i++) {
@@ -77,7 +77,7 @@ let vowelBonusScore = {
 let scrabbleScore = {
   name: "Scrabble",
   description: "The traditional scoring algorithm.",
-  scorerFunction: function scrabbleScorer(word) {
+  scorerFunction: function scrabbleScore(word) {
     word = word.toLowerCase();
     let scrabbleScore = 0;
     for(let i = 0; i < word.length; i++) {
