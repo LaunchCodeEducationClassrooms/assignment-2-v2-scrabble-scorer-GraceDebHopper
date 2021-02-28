@@ -41,51 +41,44 @@ function initialPrompt() {
   return word;
 };
 
-let simpleScore = {
-  name: "Simple Score",
-  description: "Each letter is worth 1 point.",
-  scoringFunction: function simpleScorer(word) {
-    let simpleScore = 0;
+//set-up anonymous function expressions; called from objects
+//GitHub autograder specified that simpleScore, etc. be function //variables and therefore called from objects
+//GitHUb Autograder would not allow for these simpleScore, etc. 
+//variables to be used as object declarations with funcions 
+//included in object declarations although program worked that way
+let simpleScore = function(word) {
+    let score = 0;
     for(let i=0; i<word.length; i++) {
-      simpleScore ++;
+      score ++;
     }
-    return simpleScore;
-  }
+    //console.log(score);
+    return score;
 };
-//console.log(simpleScore);
-//console.log('0 ' + simpleScore.scorerFunction(word));
 
-let vowelBonusScore = {
-  name: "Bonus Vowels",
-  description: "Vowels are 3 pts, consonants are 1 pt.",
-  scoringFunction: function vowelBonusScorer(word) {
+let vowelBonusScore = function(word) {
     word = word.toLowerCase();
-    let vowelBonusScorer = 0;
+    let score = 0;
     for(let i=0; i<word.length; i++) {
       if(word[i].includes('a') || word[i].includes('e') || word[i].includes('i') || word[i].includes('o') || word[i].includes('u')){
-        vowelBonusScorer += 3;
+        score += 3;
       } else {
-        vowelBonusScorer ++;
+        score ++;
       }
     }
-    return vowelBonusScorer;            //typeof Number
-  }
+    //console.log(score);
+    return score;            //typeof Number
 };
-//console.log(vowelBonusScore);
-//console.log('1 ' + vowelBonusScore.scorerFunction(word));
 
-let scrabbleScore = {
-  name: "Scrabble",
-  description: "The traditional scoring algorithm.",
-  scoringFunction: function scrabbleScorer(word) {
+
+let scrabbleScore = function(word) {
     word = word.toLowerCase();
-    let scrabbleScore = 0;
+    let score = 0;
     for(let i = 0; i < word.length; i++) {
       let letter = word.charAt(i);
-      scrabbleScore += Number(newPointStructure[letter]);
+      score += Number(newPointStructure[letter]);
     }
-    return scrabbleScore;
-  }
+    //console.log(score);
+    return score;
 };
 
 /*let scrabbleScore = {
@@ -107,13 +100,30 @@ let scrabbleScore = {
 //console.log(scrabbleScore);
 //console.log('2 ' + scrabbleScore.scorerFunction(word));
 
-
-const scoringAlgorithms = [simpleScore,vowelBonusScore,scrabbleScore];
+const scoringAlgorithms = [
+({
+  name: "Simple Score",
+  description: "Each letter is worth 1 point.",
+  scoringFunction: simpleScore 
+}),
+({
+  name: "Bonus Vowels",
+  description: "Vowels are 3 pts, consonants are 1 pt.",
+  scoringFunction: vowelBonusScore 
+}),
+({
+  name: "Scrabble",
+  description: "The traditional scoring algorithm.",
+  scoringFunction: scrabbleScore
+    
+})
+];
 //console.log(scoringAlgorithms);
 
 //input.question returns str and array indexes are num - convert
 //variables (word and scoreMethod) used o/s function need to be declared/defined o/s function or ReferenceError: x is not defined
 function scorerPrompt() {
+  //chose not to use object properties which did not agree to instr
   console.log(`Which scoring algorithm would you like to use?
   
 0 - Simple: One point per character
