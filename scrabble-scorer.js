@@ -44,7 +44,7 @@ function initialPrompt() {
 let simpleScore = {
   name: "Simple Score",
   description: "Each letter is worth 1 point.",
-  scorerFunction: function simpleScore(word) {
+  scoringFunction: function simpleScorer(word) {
     let simpleScore = 0;
     for(let i=0; i<word.length; i++) {
       simpleScore ++;
@@ -58,7 +58,7 @@ let simpleScore = {
 let vowelBonusScore = {
   name: "Bonus Vowels",
   description: "Vowels are 3 pts, consonants are 1 pt.",
-  scorerFunction: function vowelBonusScore(word) {
+  scoringFunction: function vowelBonusScorer(word) {
     word = word.toLowerCase();
     let vowelBonusScorer = 0;
     for(let i=0; i<word.length; i++) {
@@ -77,7 +77,7 @@ let vowelBonusScore = {
 let scrabbleScore = {
   name: "Scrabble",
   description: "The traditional scoring algorithm.",
-  scorerFunction: function scrabbleScore(word) {
+  scoringFunction: function scrabbleScorer(word) {
     word = word.toLowerCase();
     let scrabbleScore = 0;
     for(let i = 0; i < word.length; i++) {
@@ -146,7 +146,7 @@ function runProgram() {
    initialPrompt();
    //console.log(oldScrabbleScorer(word));
    scorerPrompt();
-   console.log(`Score for '${(word)}': ${scoringAlgorithms[scoreMethod].scorerFunction(word)}`);   
+   console.log(`Score for '${(word)}': ${scoringAlgorithms[scoreMethod].scoringFunction(word)}`);   
 }
 
 // Don't write any code below this line //
